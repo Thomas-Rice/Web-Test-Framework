@@ -1,10 +1,12 @@
 package automationFramework;
-import automationFramework.Tests.URLOpens;
+import java.io.IOException;
+
+import automationFramework.Tests.checkURLOpens;
 
 public class TestRunner {
 
-	public static void main(String[] args) {
-		URLOpens testObj = new URLOpens();
+	public static void main(String[] args) throws IOException {
+		checkURLOpens testObj = new checkURLOpens();
 		testObj.test();
 	
 	}

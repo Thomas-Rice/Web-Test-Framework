@@ -1,11 +1,11 @@
 package automationFramework;
-import automationFramework.Tests.URLOpens;
+import automationFramework.Tests.checkURLOpens;
 
 public class checkNoExceptionRaisedTest {
 
 	static int testPassed = 0;
 	
-	public static void evalPassed( URLOpens testObj){
+	public static void evalPassed( checkURLOpens testObj){
 		
 		try{
 			Boolean passed = testObj.test();

@@ -1,32 +1,9 @@
 package automationFramework;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestCommands {
 
-	
-	
-	//Initial test Setup that will be run for every test.
-	// Static means you can access without creating an instance of the class
-	
-	public static WebDriver testSetup(){
-		try{
-		//This is needed to run the latest version of Selenium
-		System.setProperty("webdriver.gecko.driver", "/Users/Tom/Documents/workspace/TestHarness/geckodriver");
-		// Create a new instance of the Firefox driver
-		WebDriver driver = new FirefoxDriver();
-		
-		return driver;
-		}
-		catch(Exception e){
-			System.out.print("Failed to acquire webdriver");
-			System.out.print(e);
-			System.exit(1);
-			return null;
-		}
-		
-	}
 	
 	public static void openURL(WebDriver driver, String url){
 		try{
@@ -34,11 +11,16 @@ public class TestCommands {
 			driver.get(url);
 		}
 		catch(Exception e){
+			System.out.print("@@@Fail@@@ \n");
 			System.out.printf("*** Failed to get URL ***\n");
-			System.out.printf("Caught Exception: %s \n", e);
+			// This can be saved to a file later for a more detailed test breakdown
+//			System.out.printf("Caught Exception: %s \n", e);
+			driver.quit();
+			System.out.printf("*** Test Terminated Prematurely ***\n");
 			System.exit(1);
 		}
 	}
+	
 	
 
 
