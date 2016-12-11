@@ -1,14 +1,12 @@
 package automationFramework.Tests;
 
-import java.io.IOException;
-
 import org.openqa.selenium.WebDriver;
 import automationFramework.TestCommands; 
 import automationFramework.baseTestTypes; 
 
 
 
-public class checkURLOpens extends baseTest{
+public class checkPageGoesForward extends baseTest{
 
 	
 	
@@ -20,13 +18,13 @@ public class checkURLOpens extends baseTest{
 			String url = "http://blog.arcbees.com/2016/05/10/build-your-own-test-framework/";
 			TestCommands.openURL(driver, url);
 			
-			//Get  the actual URL
-//			String actualUrl = driver.getCurrentUrl();
-//			String PageSource = driver.getPageSource();
-//			String referencePath = "/Users/Tom/Desktop/test1.txt";
-//			Boolean testResult = baseTestTypes.checkSourceAgainstReference(PageSource, referencePath);
-//			
-			driver.navigate().forward();			
+			String forwardURL = TestCommands.navigateForward(driver);			
+			baseTestTypes.checkStringAgainstString(url, forwardURL);
+			
+
+
+			
+			
 			tearDown(driver);
 			
 		

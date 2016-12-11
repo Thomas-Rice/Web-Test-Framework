@@ -1,9 +1,6 @@
 package automationFramework;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import automationFramework.utils;
 import java.io.IOException;
 
 
@@ -30,9 +27,9 @@ public class baseTestTypes {
 	public static Boolean checkSourceAgainstReference(String source1, String referencePath) throws IOException{
 		Boolean testPassed = false;
 		
-		writeFile(referencePath, source1);
+		utils.writeFile(referencePath, source1);
 
-		String test = readFile(referencePath);
+		String test = utils.readFile(referencePath);
 //		System.out.println(source1);
 //		System.out.println(test);
 		
@@ -47,38 +44,21 @@ public class baseTestTypes {
 		return testPassed;
 	}
 	
-	
+	public static Boolean checkStringAgainstString(String result, String expectedResult){
+		Boolean testPassed = false;
+		if(result.equals(expectedResult)){
+			System.out.println("@@@PASS@@@");
+			testPassed = true;
+		}
+		else{
+			System.out.println("@@@Fail@@@");
+			System.out.println("Page Strings are not the same");
+		}
+		return testPassed;
+	}
 
 
-private static String readFile(String fileName) throws IOException {
-    BufferedReader br = new BufferedReader(new FileReader(fileName));
-    
-    try {
-        StringBuilder sb = new StringBuilder();
-        String line = br.readLine();
 
-        while (line != null) {
-            sb.append(line);
-            sb.append("\n");
-            line = br.readLine();
-        }
-        return sb.toString();
-    } finally {
-        br.close();
-    }
-}
-
-private static void writeFile(String fileName, String content) throws IOException {
-	BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
-    
-    try {
-    	bw.write(content);
-        }
-
-     finally {
-    	bw.close();
-    }
-}
 
 
 

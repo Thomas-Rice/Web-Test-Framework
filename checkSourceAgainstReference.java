@@ -8,11 +8,11 @@ import automationFramework.baseTestTypes;
 
 
 
-public class checkURLOpens extends baseTest{
+public class checkSourceAgainstReference extends baseTest{
 
 	
 	
-	public void test() {
+	public void test() throws IOException {
 		
 			WebDriver driver = testSetup();
 
@@ -21,12 +21,11 @@ public class checkURLOpens extends baseTest{
 			TestCommands.openURL(driver, url);
 			
 			//Get  the actual URL
-//			String actualUrl = driver.getCurrentUrl();
-//			String PageSource = driver.getPageSource();
-//			String referencePath = "/Users/Tom/Desktop/test1.txt";
-//			Boolean testResult = baseTestTypes.checkSourceAgainstReference(PageSource, referencePath);
-//			
-			driver.navigate().forward();			
+			String actualUrl = driver.getCurrentUrl();
+			String PageSource = driver.getPageSource();
+			String referencePath = "/Users/Tom/Desktop/test1.txt";
+			Boolean testResult = baseTestTypes.checkSourceAgainstReference(PageSource, referencePath);
+						
 			tearDown(driver);
 			
 		

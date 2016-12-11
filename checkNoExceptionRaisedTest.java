@@ -8,9 +8,9 @@ public class checkNoExceptionRaisedTest {
 	public static void evalPassed( checkURLOpens testObj){
 		
 		try{
-			Boolean passed = testObj.test();
+			testObj.test();
 			testPassed = 1;
-			System.out.println(passed);
+//			System.out.println(passed);
 		}
 		catch (Exception e){
 			System.out.print("@@@ Fail @@@");
