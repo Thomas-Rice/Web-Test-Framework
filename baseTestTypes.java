@@ -7,9 +7,22 @@ import java.io.IOException;
 public class baseTestTypes {
 
 	
-	public static Boolean checkStringEquals( String String1, String String2) {
+	public static Boolean checkURLEquals( String String1, String String2) {
 		Boolean testPassed = false;
-		if (String1.equals("http://" + String2)){
+		String String3 = "";
+		
+		//This can be shortened into one in the future? 
+		if(String1.contains("http://")){
+			String3 = String1.replace("http","");
+		}
+		else if(String1.contains("https://")){
+			String3 = String1.replace("https","");
+		}
+		else{
+			System.out.println("No need to change the http");
+		}
+			
+		if (String1.equals(String2)){
 			System.out.println("Verification Successful - " + " " + String1 + " " + "is equal to" + " " +String2);
 			System.out.println("@@@PASS@@@");
 			testPassed = true;
@@ -48,11 +61,13 @@ public class baseTestTypes {
 		Boolean testPassed = false;
 		if(result.equals(expectedResult)){
 			System.out.println("@@@PASS@@@");
+			System.out.printf("-- Result "+ result + " \n" + "-- Expected Result "+ expectedResult + " \n");
 			testPassed = true;
 		}
 		else{
 			System.out.println("@@@Fail@@@");
 			System.out.println("Page Strings are not the same");
+			System.out.printf("-- Result "+ result + " \n" + "-- Expected Result "+ expectedResult +" \n");
 		}
 		return testPassed;
 	}
