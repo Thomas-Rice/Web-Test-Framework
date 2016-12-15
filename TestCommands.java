@@ -96,6 +96,7 @@ public class TestCommands {
 			return driver;
 		}
 		catch(Exception e){
+			System.out.print(e);
 			errorOutput(driver, "*** Failed to get URL ***\n");
 			return null;
 		}
