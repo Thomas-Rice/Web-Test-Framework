@@ -50,8 +50,48 @@ public class testSuite extends baseTest{
 		
 		
     }
+	
+	
+	public Boolean clickLoginButtonTest() {			
+		//************************** Initialize *************************
+		WebDriver driver = testSetup();
+
+		//************************** Open the URL *************************
+		String url = "https://www.google.co.uk/";
+		driver = TestCommands.openURL(driver, url);
+		
+		//************************** Test Commands *************************
+		String returnedURL = TestCommands.clickButton(driver, "xpath", "//a[@id='gb_70']");
+		
+		//************************** Evaluation *************************
+		String refernceURL = "https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://www.google.co.uk/#identifier";
+		Boolean testResult = baseTestTypes.checkStringAgainstString(returnedURL , refernceURL);
+
+		//************************** Close The Test Down *************************
+		tearDown(driver);
+		return testResult;
 		
     }
+	
+	public Boolean checkURLOpensTest() {
+		
+		WebDriver driver = testSetup();
+
+		//************************** Open the URL *************************
+		String url = "http://blog.arcbees.com/2016/05/10/build-your-own-test-framework/";
+		TestCommands.openURL(driver, url);
+		Boolean testResult = false;
+		tearDown(driver);
+		return testResult;
+	
+    }
+	
+	
+	
+	
+	
+	
+}
 	
 	
 	

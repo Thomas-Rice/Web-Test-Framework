@@ -36,7 +36,6 @@ public class baseTestTypes {
 	}
 	
 	
-	//This probably wont work as the sources seem to be dynamic
 	public static Boolean checkSourceAgainstReference(String source1, String referencePath) throws IOException{
 		Boolean testPassed = false;
 		
