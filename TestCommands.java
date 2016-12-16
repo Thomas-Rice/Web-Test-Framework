@@ -1,15 +1,19 @@
 package automationFramework;
 
+
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class TestCommands {
 
-	private static void errorOutput(WebDriver driver, String failMessage){
+	private static void errorOutput(WebDriver driver, String failMessage, Exception e){
+		System.out.print(e);
 		System.out.print("@@@Fail@@@ \n");
 		System.out.printf(failMessage);
 		driver.quit();
@@ -46,7 +50,7 @@ public class TestCommands {
 					} 
 		}
 		catch(NoSuchElementException e){
-			errorOutput(driver, "*** Failed to get Element ***\n");
+			errorOutput(driver, "*** Failed to get Element ***\n", e);
 			}
 		
 		return element;
@@ -80,7 +84,7 @@ public class TestCommands {
 					} 
 		}
 		catch(NoSuchElementException e){
-			errorOutput(driver, "*** Failed to get Element ***\n");
+			errorOutput(driver, "*** Failed to get Element ***\n", e);
 			}
 		
 		return element;
@@ -96,8 +100,7 @@ public class TestCommands {
 			return driver;
 		}
 		catch(Exception e){
-			System.out.print(e);
-			errorOutput(driver, "*** Failed to get URL ***\n");
+			errorOutput(driver, "*** Failed to get URL ***\n", e);
 			return null;
 		}
 
@@ -114,7 +117,7 @@ public class TestCommands {
 			
 		}
 		catch (Exception e){
-			errorOutput(driver,"*** Failed to navigate forward ***\n");
+			errorOutput(driver,"*** Failed to navigate forward ***\n", e);
 		}
 		return forwardURL;
 		
@@ -129,7 +132,7 @@ public class TestCommands {
 			Title = driver.getTitle();
 		}
 		catch(Exception e){
-			errorOutput(driver, "*** Failed to get page title ***\n");
+			errorOutput(driver, "*** Failed to get page title ***\n", e);
 			
 		}
 		return Title;
@@ -141,9 +144,10 @@ public class TestCommands {
 		try{
 			WebElement element = findElementBy(driver, findBy, locator);
 			element.sendKeys(text);
+			Thread.sleep(500);
 		}
 		catch(Exception e){
-			errorOutput(driver,"*** Failed to get send keys via element***\n");
+			errorOutput(driver,"*** Failed to get send keys via element***\n", e);
 		}
 	}
 	
@@ -156,24 +160,67 @@ public class TestCommands {
 			returnedURL = getCurrentURL(driver);
 		}
 		catch(Exception e){
-			errorOutput(driver,"*** Failed to click button via element***\n");
+			errorOutput(driver,"*** Failed to click button via element***\n", e);
 		}
 		return returnedURL;
 	}
-	
+
+	public static Boolean checkElementIsDisplayed(WebDriver driver, String findBy, String locator){
+		Boolean status = null;
+		try{
+			WebElement element = findElementBy(driver, findBy, locator);
+			status = element.isDisplayed();
+		}
+		catch(Exception e){
+			errorOutput(driver,"*** The Element Is Not Displayed On The Page***\n", e);
+		}
+		return status;
+	}
 	
 	public static String getCurrentURL(WebDriver driver){
 		String currentURL = null;
 		try{
 			//The Wait is needed to load the new page
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			currentURL = driver.getCurrentUrl();
 		}
 		catch(Exception e){
-			errorOutput(driver,"*** Failed to get page URL***\n");
+			errorOutput(driver,"*** Failed to get page URL***\n", e);
 		}
 		return currentURL;
 	}
+	
+	public static String getElementDimensions(WebDriver driver, String findBy, String locator){
+		Dimension dimensions = null;
+		String finalDimensions = null;
+		try{
+			WebElement element = findElementBy(driver, findBy, locator);
+			dimensions = element.getSize();
+			finalDimensions = "("+ dimensions.width + ", " + dimensions.height + ")"; 
+		}
+		catch(Exception e){
+			errorOutput(driver,"*** Failed to get element dimensions***\n", e);
+		}
+		return finalDimensions;
+	}
+	
+	public static String getElementPositionOnPage(WebDriver driver, String findBy, String locator){
+		Point point = null;
+		String finalPosition = null;
+		try{
+			WebElement element = findElementBy(driver, findBy, locator);
+			point = element.getLocation();
+			finalPosition = "("+ point.x + ", " + point.y + ")"; 
+		}
+		catch(Exception e){
+			errorOutput(driver,"*** Failed to get element position on page***\n", e);
+		}
+		return finalPosition;
+	}	
+	
+	
+	
+
 	
 	
 	

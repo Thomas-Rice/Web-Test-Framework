@@ -1,5 +1,7 @@
 package automationFramework.Tests;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -12,7 +14,7 @@ public class baseTest {
 		//Initial test Setup that will be run for every test.
 		// Static means you can access without creating an instance of the class
 			
-		protected WebDriver testSetup(String driverToUse){
+		protected WebDriver testSetup(String driverToUse, int timeout){
 			try{
 			//This is needed to run the latest version of Selenium
 			WebDriver driver = null;
@@ -36,6 +38,7 @@ public class baseTest {
 					driver = new ChromeDriver();
 					break;
 			}
+			driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 			return driver;
 			
 			}

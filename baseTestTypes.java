@@ -71,6 +71,21 @@ public class baseTestTypes {
 		return testPassed;
 	}
 
+	
+	public static Boolean checkBooleanResult(Boolean result, Boolean expectedResult){
+		Boolean testPassed = false;
+		if(result == expectedResult){
+			System.out.println("@@@PASS@@@");
+			System.out.printf("-- Result "+ result + " \n" + "-- Expected Result "+ expectedResult + " \n");
+			testPassed = true;
+		}
+		else{
+			System.out.println("@@@Fail@@@");
+			System.out.println("Page Strings are not the same");
+			System.out.printf("-- Result "+ result + " \n" + "-- Expected Result "+ expectedResult +" \n");
+		}
+		return testPassed;
+	}
 
 
 
