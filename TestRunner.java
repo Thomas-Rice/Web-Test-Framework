@@ -131,24 +131,3 @@ private static ArrayList testData (String testName, Boolean testPassed, Long tes
 
 }
 
-//
-//enterTextIntoSearchBox testObj = new enterTextIntoSearchBox();
-//Boolean passed = testObj.test();
-//
-//if(passed){
-//	System.out.println("Test Has Passed and Written out To file");
-//}
-//
-
-
-//private HashMap testCases(){
-//HashMap tests = new HashMap();
-//tests.put("checkPageGoesForward", "checkPageGoesForward");
-//tests.put("checkURLOpens", "checkURLOpens");
-//tests.put("checkURLTitle", "checkURLTitle");
-//tests.put("clickLoginButton", "clickLoginButton");
-//tests.put("enterTextIntoSearchBox", "enterTextIntoSearchBox");
-//
-//return tests;
-//
-//}
