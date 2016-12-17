@@ -7,7 +7,6 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.Map.Entry;
 
-
 public class TestRunner {
 	
 	//This will run through all the methods in a class and call each one in turn
@@ -26,6 +25,7 @@ public class TestRunner {
 		Boolean testResult = null;
 		int testTotalCounter = 0;
 		int testPassCounter = 0;
+		ArrayList failedTestsArrayList = new ArrayList();
 		HashMap<String, ArrayList> tests = new HashMap<String, ArrayList>();
 		
 		//Reflection enables Java code to discover information about the fields, methods and constructors of loaded classes, and to use reflected fields, methods, and constructors to operate on their underlying counterparts, within security restrictions
@@ -56,7 +56,11 @@ public class TestRunner {
 		    		
 		    		// Count the amount of passed tests for later evaluation
 		    		if(testResult){
-		    			testPassCounter +=1;
+		    			testPassCounter += 1;
+		    		}
+		    		else{
+		    			//Store all failed tests in an array
+		    			failedTestsArrayList.add(test.getName());
 		    		}
 		    	}
 		    } 
@@ -65,6 +69,9 @@ public class TestRunner {
 		        }
 		}
 		printTestResults(tests, testTotalCounter, testPassCounter);
+		
+		printFailedTests(failedTestsArrayList);
+		
 		
 	}
 	
@@ -123,6 +130,20 @@ private static ArrayList testData (String testName, Boolean testPassed, Long tes
 
 }
 
+public static void printFailedTests( ArrayList failedTestsArrayList){
+	
+	if(failedTestsArrayList.size() > 0){
+		System.out.println("Failed Tests:");
+	    // Or like this...
+	    for(int i = 0; i < failedTestsArrayList.size(); i++) {
+	        System.out.println("-- " , failedTestsArrayList.get(i));
+		}
+
+    }
+	
+	
+	
+}
 
 
 
